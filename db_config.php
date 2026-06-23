@@ -4,14 +4,12 @@
  * 
  * Update the credentials below to match your environment.
  */
-
-define('DB_HOST', getenv('MYSQLHOST'));
-define('DB_NAME', getenv('MYSQLDATABASE'));
-define('DB_USER', getenv('MYSQLUSER'));
-define('DB_PASS', getenv('MYSQLPASSWORD'));
-define('DB_PORT', getenv('MYSQLPORT'));
+define('DB_HOST', getEnvVar('MYSQLHOST', 'MYSQL_HOST'));
+define('DB_NAME', getEnvVar('MYSQLDATABASE', 'MYSQL_DATABASE'));
+define('DB_USER', getEnvVar('MYSQLUSER', 'MYSQL_USER'));
+define('DB_PASS', getEnvVar('MYSQLPASSWORD', 'MYSQL_PASSWORD'));
+define('DB_PORT', getEnvVar('MYSQLPORT', 'MYSQL_PORT'));
 define('DB_CHARSET', 'utf8mb4');
-
 /**
  * Get a PDO database connection (singleton pattern).
  *
