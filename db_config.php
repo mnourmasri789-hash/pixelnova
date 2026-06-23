@@ -5,10 +5,11 @@
  * Update the credentials below to match your environment.
  */
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'pixelnova_portfolio');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', getenv('MYSQLHOST'));
+define('DB_NAME', getenv('MYSQLDATABASE'));
+define('DB_USER', getenv('MYSQLUSER'));
+define('DB_PASS', getenv('MYSQLPASSWORD'));
+define('DB_PORT', getenv('MYSQLPORT'));
 define('DB_CHARSET', 'utf8mb4');
 
 /**
@@ -21,9 +22,11 @@ function getDB(): PDO
     static $pdo = null;
 
     if ($pdo === null) {
+        // تم تحديث الـ DSN ليشمل المنفذ (Port) بشكل صحيح
         $dsn = sprintf(
-            'mysql:host=%s;dbname=%s;charset=%s',
+            'mysql:host=%s;port=%s;dbname=%s;charset=%s',
             DB_HOST,
+            DB_PORT,
             DB_NAME,
             DB_CHARSET
         );
@@ -37,9 +40,9 @@ function getDB(): PDO
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            // In production, log the error instead of displaying it
+            // تظهر الخطأ الحقيقي للمساعدة في التشخيص
             http_response_code(500);
-            die('Database connection failed. Please check your configuration.');
+            die('Database connection failed: ' . $e->getMessage());
         }
     }
 
