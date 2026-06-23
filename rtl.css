@@ -1,0 +1,66 @@
+/* ===== RTL SUPPORT (ARABIC) ===== */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .nav-links {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+[dir="rtl"] .nav-lang-toggle {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+[dir="rtl"] .hero-content,
+[dir="rtl"] .section-header,
+[dir="rtl"] .contact-info {
+  text-align: right;
+}
+
+[dir="rtl"] .section-header {
+  text-align: center; /* keep center for section headers */
+}
+
+[dir="rtl"] .hero-badge .dot {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+[dir="rtl"] .btn-primary svg,
+[dir="rtl"] .btn-submit svg {
+  margin-left: 0 !important;
+  margin-right: 8px !important;
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .stat-item:not(:last-child) {
+  border-right: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[dir="rtl"] .contact-method-icon {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+[dir="rtl"] .project-tech-stack {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .footer-content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-links {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .whatsapp-float svg {
+  transform: scaleX(-1); /* Whatsapp icon might not need flip, let's keep it normal */
+}
+[dir="rtl"] .whatsapp-float svg {
+  transform: none;
+}
