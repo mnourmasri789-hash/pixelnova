@@ -2,4 +2,6 @@ FROM dunglas/frankenphp:php8.4
 
 RUN install-php-extensions pdo_mysql mysqli
 
-COPY . /app/public
+WORKDIR /app
+
+COPY . /app
