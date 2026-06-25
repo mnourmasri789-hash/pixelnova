@@ -1,4 +1,4 @@
-```php
+
 <?php
 /**
  * PixelNova Portfolio — Database Configuration
@@ -82,4 +82,4 @@ function esc(?string $str): string
 {
     return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
 }
-```
+?>
