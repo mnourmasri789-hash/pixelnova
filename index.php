@@ -343,7 +343,7 @@ $projectCount = count($projects);
               </div>
               <div class="contact-method-text">
                 <span class="contact-method-label">Email</span>
-                <span class="contact-method-value">m.nourmasri789@gmail.com</span>
+                <span class="contact-method-value">pixelnovatr@gmail.com</span>
               </div>
             </div>
 
