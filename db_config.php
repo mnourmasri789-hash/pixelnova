@@ -9,12 +9,11 @@ function getEnvVar($name, $alternative) {
     return getenv($name) !== false ? getenv($name) : getenv($alternative);
 }
 
-define('DB_HOST', getEnvVar('MYSQLHOST', 'MYSQL_HOST'));
-define('DB_NAME', getEnvVar('MYSQLDATABASE', 'MYSQL_DATABASE'));
-define('DB_USER', getEnvVar('MYSQLUSER', 'MYSQL_USER'));
-define('DB_PASS', getEnvVar('MYSQLPASSWORD', 'MYSQL_PASSWORD'));
-define('DB_PORT', getEnvVar('MYSQLPORT', 'MYSQL_PORT'));
-define('DB_CHARSET', 'utf8mb4');
+define('DB_HOST', getenv('MYSQLHOST') ?: 'mysql.railway.internal');
+define('DB_NAME', getenv('MYSQLDATABASE') ?: 'railway');
+define('DB_USER', getenv('MYSQLUSER') ?: 'root');
+define('DB_PASS', getenv('MYSQLPASSWORD') ?: 'DGqDTRDRxjyqppuEQQfaJKROQAdHgCMd');
+define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
 
 /**
  * Get a database connection.
