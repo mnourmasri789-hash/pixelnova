@@ -1,3 +1,4 @@
+```php
 <?php
 /**
  * PixelNova Portfolio — Database Configuration
@@ -24,6 +25,13 @@ function getDB()
     static $pdo = null;
 
     if ($pdo === null) {
+
+        echo "HOST=" . DB_HOST . "<br>";
+        echo "DB=" . DB_NAME . "<br>";
+        echo "USER=" . DB_USER . "<br>";
+        echo "PORT=" . DB_PORT . "<br>";
+        exit;
+
         $dsn = sprintf(
             'mysql:host=%s;port=%s;dbname=%s;charset=%s',
             DB_HOST,
@@ -41,14 +49,13 @@ function getDB()
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            // الخطة البديلة: إذا فشل PDO بسبب نقص التعريف، حاول استخدام MySQLi
             if (function_exists('mysqli_connect')) {
                 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
                 if ($conn) {
-                    return $conn; // إرجاع اتصال MySQLi إذا كان PDO لا يعمل
+                    return $conn;
                 }
             }
-            // إذا فشل الكل، أظهر الخطأ
+
             http_response_code(500);
             die('Database connection failed: ' . $e->getMessage());
         }
@@ -75,3 +82,4 @@ function esc(?string $str): string
 {
     return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
 }
+```
