@@ -16,9 +16,10 @@ define('DB_PORT', getEnvVar('MYSQLPORT', 'MYSQL_PORT'));
 define('DB_CHARSET', 'utf8mb4');
 
 /**
- * Get a PDO database connection (singleton pattern).
+ * Get a database connection.
+ * Try PDO first, if driver missing, fallback to MySQLi.
  */
-function getDB(): PDO
+function getDB()
 {
     static $pdo = null;
 
@@ -40,6 +41,14 @@ function getDB(): PDO
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
+            // الخطة البديلة: إذا فشل PDO بسبب نقص التعريف، حاول استخدام MySQLi
+            if (function_exists('mysqli_connect')) {
+                $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+                if ($conn) {
+                    return $conn; // إرجاع اتصال MySQLi إذا كان PDO لا يعمل
+                }
+            }
+            // إذا فشل الكل، أظهر الخطأ
             http_response_code(500);
             die('Database connection failed: ' . $e->getMessage());
         }
@@ -48,7 +57,7 @@ function getDB(): PDO
     return $pdo;
 }
 
-// باقي الدوال الخاصة بك كما هي
+// باقي الدوال الخاصة بك
 function generateCSRFToken(): string
 {
     if (empty($_SESSION['csrf_token'])) {
